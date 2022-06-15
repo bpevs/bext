@@ -17,7 +17,7 @@ develop/release browser extensions for, currently...
 Bundler:
 
 ```sh
-> deno install --name=bext --allow-read --allow-write --allow-run --allow-env https://deno.land/x/bext/bundle.ts
+> deno install --name=bext --allow-read --allow-write --allow-run --allow-env https://deno.land/x/bext/main.ts
 
 > cd ./my-project
 
