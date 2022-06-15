@@ -1,0 +1,18 @@
+{
+  "importMap": "./import_map.json",
+  "fmt": {
+    "options": {
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  },
+  "lint": {
+    "files": {
+      "exclude": ["dist"]
+    }
+  },
+  "tasks": {
+    "test": "deno fmt && deno lint && deno task check && deno test source",
+    "check": "deno check source/bundle.ts && deno check source/mod.ts"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "asserts": "https://deno.land/std@0.138.0/testing/asserts.ts",
+    "bdd": "https://deno.land/std@0.138.0/testing/bdd.ts"
+  }
+}
