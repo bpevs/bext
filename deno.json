@@ -13,6 +13,6 @@
   },
   "tasks": {
     "test": "deno fmt && deno lint && deno task check && deno test source",
-    "check": "deno check source/bundle.ts && deno check source/mod.ts"
+    "check": "deno check source/main.ts && deno check source/mod.ts"
   }
 }
