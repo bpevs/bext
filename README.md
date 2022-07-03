@@ -12,6 +12,11 @@ NOTE 2: This will really mostly focus on Chromium and Firefox. Safari could be a
 target in the future, but Apple is just too much of a pain in the ass to
 develop/release browser extensions for, currently...
 
+# Examples
+
+- [Example Projects](https://github.com/bpevs/bext_examples)
+- [Favioli](https://github.com/bpevs/favioli) is built using bext
+
 # Usage
 
 Bundler:
