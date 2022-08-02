@@ -1,14 +1,8 @@
 /**
  * Compile and bundle all the distributables into dist.
- *
- * Note: This file does NOT use deno.json as a config file for itself.
- * That config file is specifically for use in Deno.emit.
- *
- * Probably move to esbuild:
- *   - https://deno.land/x/esbuild_deno_loader@0.5.0
  */
-import * as esbuild from 'https://deno.land/x/esbuild@v0.14.39/mod.js';
-import { denoPlugin } from 'https://raw.githubusercontent.com/ivebencrazy/esbuild_deno_loader/main/mod.ts';
+import * as esbuild from 'https://deno.land/x/esbuild@v0.14.51/mod.js';
+import { denoPlugin } from 'https://deno.land/x/esbuild_deno_loader@0.5.2/mod.ts';
 import { copySync, ensureDir } from 'https://deno.land/std@0.138.0/fs/mod.ts';
 import { resolve } from 'https://deno.land/std@0.142.0/path/mod.ts';
 
