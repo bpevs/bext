@@ -1,10 +1,10 @@
 /**
  * Compile and bundle all the distributables into dist.
  */
-import * as esbuild from 'https://deno.land/x/esbuild@v0.14.51/mod.js';
-import { denoPlugin } from 'https://deno.land/x/esbuild_deno_loader@0.5.2/mod.ts';
-import { copySync, ensureDir } from 'https://deno.land/std@0.138.0/fs/mod.ts';
-import { resolve } from 'https://deno.land/std@0.142.0/path/mod.ts';
+import * as esbuild from 'esbuild';
+import { denoPlugin } from 'esbuild_deno_loader';
+import { copySync, ensureDir } from 'std/fs/mod.ts';
+import { resolve } from 'std/path/mod.ts';
 
 const importMapURL = new URL('file://' + resolve('./import_map.json'));
 

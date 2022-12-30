@@ -1,6 +1,7 @@
 {
   "imports": {
-    "asserts": "https://deno.land/std@0.138.0/testing/asserts.ts",
-    "bdd": "https://deno.land/std@0.138.0/testing/bdd.ts"
+    "std/": "https://deno.land/std@0.170.0/",
+    "esbuild": "https://deno.land/x/esbuild@v0.14.51/mod.js",
+    "esbuild_deno_loader": "https://deno.land/x/esbuild_deno_loader@0.5.2/mod.ts"
   }
 }
