@@ -1,5 +1,6 @@
 /**
  * @todo generate from @types/chrome
+ * ts-auto-mock is quite heavy if not shaken
  */
 const listeners = {
   addListener: () => {},

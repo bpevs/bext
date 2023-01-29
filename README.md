@@ -1,18 +1,12 @@
 # bext
 
-Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) with Deno
-
-**NOTE: this is currently just tools that I am consolidating from building
-[Favioli](https://github.com/bpevs/favioli). I will formalize this into a more
-proper library/CLI later. API will likely change drastically.**
-
-NOTE 2: This will really mostly focus on Chromium and Firefox. Safari could be a target in the future, but Apple is just too much of a pain in the ass to
-develop/release browser extensions for, currently...
+Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) with Deno. Supports Chromium and Firefox browsers.
 
 # Examples
 
-- [Example Projects](https://github.com/bpevs/bext_examples)
-- [Favioli](https://github.com/bpevs/favioli) is built using bext
+- [examples/preact_app](./examples/preact_app) is our canonical usage example
+- Bext powers [Favioli](https://github.com/bpevs/favioli)
+- [if you make an app, lmk and I can add it here!]
 
 # Usage
 
@@ -21,26 +15,44 @@ Bundler:
 ```sh
 > deno install --name=bext --allow-read --allow-write --allow-run --allow-env https://deno.land/x/bext/main.ts
 
-> cd ./my-project
+> cd ./my_project
 
 > bext # both
 > bext chrome # only chrome
 > bext firefox # only ff
+
+> bext --watch # build again on change
+> bext chrome -w # variations can be used for single-platform
+> bext firefox --watch
 ```
 
-Types:
+Types and Cross-Platform API Handling:
 
 ```ts
-import type { BrowserAPI } from 'https://deno.land/x/bext/mod.ts';
+// Import the direct npm:@types/chrome import used to define browserAPI in Bext
+// Alternatively, `import { Tab, TabChangeInfo } from npm:@types/chrome`
+import type Chrome from 'https://deno.land/x/bext/types/chrome.ts';
 
-// globalThis.chrome in chrome, globalThis.browser in firefox
+/**
+ * browserAPI resolves to:
+ *   - globalThis.chrome in Chromium browsers
+ *   - globalThis.browser in Firefox browsers
+ *   - Bext's mock_browser in Deno context (for unit testing)
+ */
 import browserAPI from 'https://deno.land/x/bext/mod.ts';
 
-const { Tab, TabChangeInfo } = BrowserAPI;
-
 browserAPI.tabs.onUpdated.addListener(
-  (tabId: number, _: TabChangeInfo, tab: Tab) => {
+  (tabId: number, _: Chrome.TabChangeInfo, tab: Chrome.Tab) => {
     // do stuff
   },
 );
 ```
+
+# Running this repo (for Bext development)
+
+Tasks are defined in [deno.json](./deno.json), but basically:
+
+- `deno task dev`: Run the example app in watch-mode
+- `deno task test`: Makes sure it all works. Use this before committing!
+  - runs fmt, lint, type-checks, unit tests for source and example apps
+  - builds example apps using local bext copy

@@ -7,12 +7,22 @@
   },
   "lint": {
     "files": {
-      "exclude": ["dist"]
+      "include": ["source"]
+    }
+  },
+  "test": {
+    "files": {
+      "include": ["source"],
+      "exclude": ["dist", "examples"]
     }
   },
   "tasks": {
-    "test": "deno fmt && deno lint && deno task check && deno test source",
-    "check": "deno check source/main.ts && deno check source/mod.ts"
+    "check": "deno check source/main.ts && deno check source/mod.ts",
+    "test": "deno task test:source && deno task test:examples && deno task build",
+    "test:source": "deno fmt && deno lint && deno task check && deno test source",
+    "test:examples": "(cd examples/preact_app && deno task test)",
+    "build": "(cd examples/preact_app && deno run -A ../../source/main.ts build)",
+    "dev": "(cd examples/preact_app && deno run -A ../../source/main.ts build -w)"
   },
   "imports": {
     "std/": "https://deno.land/std@0.170.0/"
