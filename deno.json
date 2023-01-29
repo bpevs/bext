@@ -1,5 +1,4 @@
 {
-  "importMap": "./import_map.json",
   "fmt": {
     "options": {
       "singleQuote": true,
@@ -14,5 +13,8 @@
   "tasks": {
     "test": "deno fmt && deno lint && deno task check && deno test source",
     "check": "deno check source/main.ts && deno check source/mod.ts"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.170.0/"
   }
 }

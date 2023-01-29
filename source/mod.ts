@@ -1,13 +1,12 @@
-import type { BrowserAPI } from './types/browser_api.ts';
+import type BrowserAPI from './types/chrome.ts';
 import { isDeno, isFirefox } from './utilities/predicates.ts';
 import mockBrowser from './mock_browser/main.ts';
 
-export * from './types/browser_api.ts';
-export * from './types/manifest.ts';
 export * from './utilities/predicates.ts';
 
 // deno-lint-ignore no-explicit-any
 let browserAPI: BrowserAPI = (globalThis as any).chrome;
+export { BrowserAPI };
 
 if (isFirefox()) {
   // deno-lint-ignore no-explicit-any

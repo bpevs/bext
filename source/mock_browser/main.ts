@@ -1,3 +1,6 @@
+/**
+ * @todo generate from @types/chrome
+ */
 const listeners = {
   addListener: () => {},
   removeListener: () => {},
