@@ -14,16 +14,12 @@
   "importMap": "./import_map.json",
 
   "lint": {
-    "files": {
-      "exclude": ["dist"]
-    }
+    "exclude": ["dist"]
   },
 
   "fmt": {
-    "options": {
-      "singleQuote": true,
-      "proseWrap": "preserve"
-    }
+    "singleQuote": true,
+    "proseWrap": "preserve"
   },
 
   "tasks": {

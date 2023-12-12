@@ -1,20 +1,14 @@
 {
   "fmt": {
-    "options": {
-      "singleQuote": true,
-      "proseWrap": "preserve"
-    }
+    "singleQuote": true,
+    "proseWrap": "preserve"
   },
   "lint": {
-    "files": {
-      "include": ["source"]
-    }
+    "include": ["source"]
   },
   "test": {
-    "files": {
-      "include": ["source"],
-      "exclude": ["dist", "examples"]
-    }
+    "include": ["source"],
+    "exclude": ["dist", "examples"]
   },
   "tasks": {
     "check": "deno check source/main.ts && deno check source/mod.ts",
@@ -25,6 +19,6 @@
     "dev": "(cd examples/preact_app && deno run -A ../../source/main.ts build -w)"
   },
   "imports": {
-    "std/": "https://deno.land/std@0.170.0/"
+    "std/": "https://deno.land/std@0.208.0/"
   }
 }
