@@ -1,4 +1,3 @@
-/* @jsx h */
 import { h, render } from 'preact';
 
 import Header from './components/header.tsx';

@@ -1,4 +1,3 @@
-/* @jsx h */
 import { h } from 'preact';
 import { assertEquals } from 'std/asserts';
 import { render } from '@testing-library/preact';

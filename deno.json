@@ -1,10 +1,12 @@
 {
   "fmt": {
     "singleQuote": true,
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "exclude": ["dist", "examples"]
   },
   "lint": {
-    "include": ["source"]
+    "include": ["source"],
+    "exclude": ["dist", "examples"]
   },
   "test": {
     "include": ["source"],
@@ -12,7 +14,7 @@
   },
   "tasks": {
     "check": "deno check source/main.ts && deno check source/mod.ts",
-    "test": "deno task test:source && deno task test:examples && deno task build",
+    "test": "deno task test:source && deno task build && deno task test:examples",
     "test:source": "deno fmt && deno lint && deno task check && deno test source",
     "test:examples": "(cd examples/preact_app && deno task test)",
     "build": "(cd examples/preact_app && deno run -A ../../source/main.ts build)",

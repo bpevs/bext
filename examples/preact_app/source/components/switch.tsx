@@ -1,4 +1,3 @@
-/* @jsx h */
 import { Fragment, h, VNode } from 'preact';
 
 export interface SwitchProps {

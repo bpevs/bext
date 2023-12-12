@@ -1,4 +1,3 @@
-/* @jsx h */
 import { h, render } from 'preact';
 import OptionsButton from './components/options_button.tsx';
 
