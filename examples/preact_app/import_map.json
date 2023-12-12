@@ -8,6 +8,6 @@
     "deno-dom": "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts",
     "std/asserts": "https://deno.land/std@0.208.0/testing/asserts.ts",
     "std/mock": "https://deno.land/std@0.208.0/testing/mock.ts",
-    "@testing-library/preact": "https://esm.sh/@testing-library/preact@3.2.3/pure?dev"
+    "@testing-library/preact": "https://esm.sh/@testing-library/preact@3.2.2/pure?dev"
   }
 }
