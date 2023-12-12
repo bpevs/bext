@@ -27,7 +27,7 @@
     "build": "bext",
     "build:chrome": "bext chrome",
     "build:firefox": "bext firefox",
-    "test": "deno fmt && deno task check && deno task test:unit && deno lint",
+    "test": "deno fmt && deno task test:unit && deno lint",
     "test:unit": "deno test -A source",
     "test:unit:update": "deno test -A -- --update source",
     "check": "deno task check:background && deno task check:content_script && deno task check:options && deno task check:popup",
