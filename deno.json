@@ -14,7 +14,7 @@
   },
   "tasks": {
     "check": "deno check source/main.ts && deno check source/mod.ts",
-    "test": "deno task test:source && deno task build && deno task test:examples",
+    "test": "deno task test:examples && deno task test:source && deno task build",
     "test:source": "deno fmt && deno lint && deno task check && deno test source",
     "test:examples": "(cd examples/preact_app && deno task test)",
     "build": "(cd examples/preact_app && deno run -A ../../source/main.ts build)",
