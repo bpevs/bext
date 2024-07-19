@@ -6,7 +6,7 @@ export * from './utilities/predicates.ts';
 
 // deno-lint-ignore no-explicit-any
 let browserAPI: BrowserAPI = (globalThis as any).chrome;
-export { BrowserAPI };
+export type { BrowserAPI };
 
 if (isFirefox()) {
   // deno-lint-ignore no-explicit-any

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h } from "preact";
 
 export interface OptionsProps {
   default?: boolean;
@@ -9,7 +9,7 @@ export default function Options(props: OptionsProps) {
   return (
     <div>
       <h1>It feels like... options?</h1>
-      <a href='#home'>go to home</a>
+      <a href="#home">go to home</a>
     </div>
   );
 }

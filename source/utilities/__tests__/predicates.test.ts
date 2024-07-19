@@ -1,5 +1,5 @@
-import { assertStrictEquals } from 'std/testing/asserts.ts';
-import { it } from 'std/testing/bdd.ts';
+import { assertStrictEquals } from '@std/testing/asserts';
+import { it } from '@std/testing/bdd';
 
 import { isChrome, isDeno, isFirefox } from '../predicates.ts';
 

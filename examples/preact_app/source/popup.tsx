@@ -1,7 +1,7 @@
-import { h, render } from 'preact';
-import OptionsButton from './components/options_button.tsx';
+import { h, render } from "preact";
+import OptionsButton from "./components/options_button.tsx";
 
-const mountPoint = document.getElementById('mount');
+const mountPoint = document.getElementById("mount");
 
 if (mountPoint) {
   render(

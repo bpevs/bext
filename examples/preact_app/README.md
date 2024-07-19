@@ -33,5 +33,7 @@ For loading unpacked extensions, see browser docs. Here are some examples:
 
 A few gotchas...
 
-- In Chrome, you select the dir containing `manifest.json` (`dist` dir). In Firefox, you select the `manifest.json` itself
-- Make sure your extension is enabled in private windows if testing in private windows...
+- In Chrome, you select the dir containing `manifest.json` (`dist` dir). In
+  Firefox, you select the `manifest.json` itself
+- Make sure your extension is enabled in private windows if testing in private
+  windows...

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h } from "preact";
 
 export default function Header(props: { title: string }) {
   return (
