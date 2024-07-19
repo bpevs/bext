@@ -8,6 +8,7 @@
       "jsr:@std/assert@^0.213.1": "jsr:@std/assert@0.213.1",
       "jsr:@std/assert@^0.224.0": "jsr:@std/assert@0.224.0",
       "jsr:@std/assert@^1.0.0": "jsr:@std/assert@1.0.0",
+      "jsr:@std/cli@^1.0.0": "jsr:@std/cli@1.0.0",
       "jsr:@std/encoding@0.213": "jsr:@std/encoding@0.213.1",
       "jsr:@std/flags@^0.224.0": "jsr:@std/flags@0.224.0",
       "jsr:@std/fs@^0.229.3": "jsr:@std/fs@0.229.3",
@@ -52,6 +53,9 @@
         "dependencies": [
           "jsr:@std/internal@^1.0.0"
         ]
+      },
+      "@std/cli@1.0.0": {
+        "integrity": "3c38f1da21bff0d25a9e6d97139ef2eb9ba334b5910da92c0169b44f38655f08"
       },
       "@std/encoding@0.213.1": {
         "integrity": "fcbb6928713dde941a18ca5db88ca1544d0755ec8fb20fe61e2dc8144b390c62"
@@ -773,6 +777,7 @@
       "jsr:@b-fuze/deno-dom@^0.1.47",
       "jsr:@luca/esbuild-deno-loader@^0.10.3",
       "jsr:@std/assert@^1.0.0",
+      "jsr:@std/cli@^1.0.0",
       "jsr:@std/flags@^0.224.0",
       "jsr:@std/fs@^0.229.3",
       "jsr:@std/path@^1.0.1",

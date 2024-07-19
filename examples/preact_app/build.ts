@@ -1,6 +1,6 @@
 import * as esbuild from "esbuild";
 import { denoPlugins } from "esbuild_deno_loader";
-import { parse } from "@std/flags";
+import { parseArgs } from "@std/cli";
 import { copySync, ensureDir } from "@std/fs";
 import { resolve } from "@std/path";
 
@@ -15,7 +15,7 @@ interface BrowserManifests {
   [id: string]: BrowserManifestSettings;
 }
 
-const args = parse(Deno.args);
+const args = parseArgs(Deno.args);
 const isWatching = args.watch || args.w;
 
 const browsers: BrowserManifests = {
