@@ -85,18 +85,19 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   };
 
   // Build Deno Plugin Options
-  let importMapURL = new URL('file://' + resolve('./import_map.json'));
+  let importMapURL: string | undefined = resolve('./import_map.json');
+
   if (!existsSync(importMapURL)) {
-    const denoJSONFileURL = new URL('file://' + resolve('./deno.json'));
-    const denoJSON = await (await fetch(denoJSONFileURL)).json();
-    if (denoJSON.source || denoJSON.imports) {
-      importMapURL = denoJSONFileURL;
-    }
+    importMapURL = undefined;
   }
+  const configUrl = resolve('./deno.json');
 
   esBuildOptions.plugins = [
     ...denoPlugins(
-      importMapURL ? { importMapURL: importMapURL.toString() } : {},
+      {
+        importMapURL: importMapURL,
+        configPath: configUrl,
+      },
     ),
   ];
 
