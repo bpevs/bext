@@ -1,4 +1,5 @@
-import { h, render } from "preact";
+/** @jsxImportSource preact */
+import { render } from "preact";
 import OptionsButton from "./components/options_button.tsx";
 
 const mountPoint = document.getElementById("mount");

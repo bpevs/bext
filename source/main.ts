@@ -1,23 +1,23 @@
 // Compile and bundle all the distributables into dist.
-import * as esbuild from 'esbuild';
-import { denoPlugins } from 'esbuild-deno-loader';
-import { parseArgs } from '@std/cli';
-import { copySync, ensureDir } from '@std/fs';
-import { resolve } from '@std/path';
+import * as esbuild from 'npm:esbuild@^0.19.11'
+import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@0.10.3'
+import { parseArgs } from 'jsr:@std/cli@^1.0.0'
+import { copySync, ensureDir } from 'jsr:@std/fs@^0.229.3'
+import { resolve } from 'jsr:@std/path@^1.0.1'
 
 interface BrowserManifestSettings {
-  color: string;
-  omits: string[];
+  color: string
+  omits: string[]
   // deno-lint-ignore no-explicit-any
-  overrides?: { [id: string]: any };
+  overrides?: { [id: string]: any }
 }
 
 interface BrowserManifests {
-  [id: string]: BrowserManifestSettings;
+  [id: string]: BrowserManifestSettings
 }
 
-const args = parseArgs(Deno.args);
-const isWatching = args.watch || args.w;
+const args = parseArgs(Deno.args)
+const isWatching = args.watch || args.w
 
 const browsers: BrowserManifests = {
   chrome: {
@@ -34,42 +34,42 @@ const browsers: BrowserManifests = {
     },
     omits: ['options_page', 'host_permissions', 'action'],
   },
-};
+}
 
-if (args._[0] === 'chrome') delete browsers.firefox;
-if (args._[0] === 'firefox') delete browsers.chrome;
+if (args._[0] === 'chrome') delete browsers.firefox
+if (args._[0] === 'firefox') delete browsers.chrome
 
-console.log('\x1b[37mPackager\n========\x1b[0m');
+console.log('\x1b[37mPackager\n========\x1b[0m')
 
 const builds = Object.keys(browsers).map(async (browserId) => {
-  const distDir = `dist/${browserId}`;
+  const distDir = `dist/${browserId}`
 
   // Copy JS/HTML/CSS/ICONS
-  ensureDir(`${distDir}/static`);
+  ensureDir(`${distDir}/static`)
 
-  const options = { overwrite: true };
-  copySync('static', distDir, options);
+  const options = { overwrite: true }
+  copySync('static', distDir, options)
 
-  const browserManifestSettings = browsers[browserId];
+  const browserManifestSettings = browsers[browserId]
 
   // Transform Manifest
   const manifest = {
     ...JSON.parse(Deno.readTextFileSync('source/manifest.json')),
     ...browserManifestSettings.overrides,
-  };
-  browserManifestSettings.omits.forEach((omit) => delete manifest[omit]);
+  }
+  browserManifestSettings.omits.forEach((omit) => delete manifest[omit])
 
   Deno.writeTextFileSync(
     distDir + '/manifest.json',
     JSON.stringify(manifest, null, 2),
-  );
+  )
 
-  const color = browserManifestSettings.color || '';
-  const browserName = browserId.toUpperCase();
-  const colorizedBrowserName = `\x1b[1m${color}${browserName}\x1b[0m`;
-  const outdir = `dist/${browserId}/`;
+  const color = browserManifestSettings.color || ''
+  const browserName = browserId.toUpperCase()
+  const colorizedBrowserName = `\x1b[1m${color}${browserName}\x1b[0m`
+  const outdir = `dist/${browserId}/`
 
-  console.log(`Initializing ${colorizedBrowserName} build...`);
+  console.log(`Initializing ${colorizedBrowserName} build...`)
   const esBuildOptions: esbuild.BuildOptions = {
     entryPoints: [
       'source/options.tsx',
@@ -81,25 +81,12 @@ const builds = Object.keys(browsers).map(async (browserId) => {
     bundle: true,
     format: 'esm',
     logLevel: 'verbose',
-    plugins: [],
-  };
-
-  // Build Deno Plugin Options
-  let importMapURL: string | undefined = resolve('./import_map.json');
-
-  if (!existsSync(importMapURL)) {
-    importMapURL = undefined;
+    plugins: []
   }
-  const configUrl = resolve('./deno.json');
 
   esBuildOptions.plugins = [
-    ...denoPlugins(
-      {
-        importMapURL: importMapURL,
-        configPath: configUrl,
-      },
-    ),
-  ];
+    ...denoPlugins({ configPath: resolve('./deno.json') }),
+  ]
 
   // Add watch esbuild options
   if (isWatching) {
@@ -111,30 +98,30 @@ const builds = Object.keys(browsers).map(async (browserId) => {
             console.error(
               `Rebuild for ${colorizedBrowserName} failed:`,
               result.errors,
-            );
-          } else console.log(`Rebuilt for ${colorizedBrowserName}`);
-        });
+            )
+          } else console.log(`Rebuilt for ${colorizedBrowserName}`)
+        })
       },
-    };
-    esBuildOptions.plugins = [...esBuildOptions.plugins, watchplugin];
-    const ctx = await esbuild.context({ ...esBuildOptions });
-    await ctx.watch();
+    }
+    esBuildOptions.plugins = [...esBuildOptions.plugins, watchplugin]
+    const ctx = await esbuild.context({ ...esBuildOptions })
+    await ctx.watch()
   } else {
-    await esbuild.build({ ...esBuildOptions });
+    await esbuild.build({ ...esBuildOptions })
   }
 
-  console.log(`Build complete for ${colorizedBrowserName}: ${resolve(outdir)}`);
-});
+  console.log(`Build complete for ${colorizedBrowserName}: ${resolve(outdir)}`)
+})
 
-await Promise.all(builds);
-if (!isWatching) Deno.exit(0);
+await Promise.all(builds)
+if (!isWatching) Deno.exit(0)
 
 function existsSync(filePath: string | URL): boolean {
   try {
-    Deno.lstatSync(filePath);
-    return true;
+    Deno.lstatSync(filePath)
+    return true
   } catch (error) {
-    if (error instanceof Deno.errors.NotFound) return false;
-    throw error;
+    if (error instanceof Deno.errors.NotFound) return false
+    throw error
   }
 }

@@ -6,7 +6,7 @@ const listeners = {
   addListener: () => {},
   removeListener: () => {},
   hasListener: () => {},
-};
+}
 
 export default {
   permissions: {
@@ -31,4 +31,4 @@ export default {
     query: () => {},
     sendMessage: () => {},
   },
-};
+}

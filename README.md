@@ -31,7 +31,7 @@ Types and Cross-Platform API Handling:
 ```ts
 // Import the direct npm:@types/chrome import used to define browserAPI in Bext
 // Alternatively, `import { Tab, TabChangeInfo } from npm:@types/chrome`
-import type Chrome from 'https://deno.land/x/bext/types/chrome.ts';
+import type Chrome from 'https://deno.land/x/bext/types/chrome.ts'
 
 /**
  * browserAPI resolves to:
@@ -39,13 +39,13 @@ import type Chrome from 'https://deno.land/x/bext/types/chrome.ts';
  *   - globalThis.browser in Firefox browsers
  *   - Bext's mock_browser in Deno context (for unit testing)
  */
-import browserAPI from 'https://deno.land/x/bext/mod.ts';
+import browserAPI from 'https://deno.land/x/bext/mod.ts'
 
 browserAPI.tabs.onUpdated.addListener(
   (tabId: number, _: Chrome.TabChangeInfo, tab: Chrome.Tab) => {
     // do stuff
   },
-);
+)
 ```
 
 # Running this repo (for Bext development)

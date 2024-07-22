@@ -7,20 +7,34 @@
       "dom.asynciterable",
       "esnext"
     ],
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   },
+
+  "imports": {
+    "browser": "../../source/mod.ts",
+    "browser/": "../../source/",
+    "preact": "https://esm.sh/preact",
+    "preact/hooks": "https://esm.sh/preact/hooks",
+    "preact/jsx-runtime": "https://esm.sh/preact/jsx-runtime?dts",
+    "preact/jsx-dev-runtime": "https://esm.sh/preact/jsx-dev-runtime?dts",
+
+    "deno-dom": "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts",
+    "@std/assert": "https://deno.land/std@0.208.0/testing/asserts.ts",
+    "@std/testing/mock": "https://deno.land/std@0.208.0/testing/mock.ts",
+    "@testing-library/preact": "https://esm.sh/@testing-library/preact@3.2.2/pure?dev"
+  },
+
   "lint": {
-    "exclude": [
-      "dist"
-    ]
+    "exclude": ["dist"]
   },
+
   "tasks": {
-    "dev": "deno run -A build.ts --watch",
-    "build": "deno run -A build.ts",
-    "build:chrome": "deno run -A build.ts chrome",
-    "build:firefox": "deno run -A build.ts firefox",
+    "install": "deno install ../../source/main.ts -gfA --name bext-internal",
+    "dev": "bext-internal --watch",
+    "build": "bext-internal",
+    "build:chrome": "bext-internal chrome",
+    "build:firefox": "bext-internal firefox",
     "test": "deno fmt && deno task check && deno task test:unit && deno lint",
     "test:unit": "deno test -A source",
     "test:unit:update": "deno test -A -- --update source",
@@ -29,22 +43,5 @@
     "check:content_script": "deno check source/content_script.ts",
     "check:options": "deno check source/options.tsx",
     "check:popup": "deno check source/popup.tsx"
-  },
-  "imports": {
-    "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.47",
-    "@std/assert": "jsr:@std/assert@^1.0.0",
-    "@std/cli": "jsr:@std/cli@^1.0.0",
-    "@std/flags": "jsr:@std/flags@^0.224.0",
-    "@std/fs": "jsr:@std/fs@^0.229.3",
-    "@std/path": "jsr:@std/path@^1.0.1",
-    "@std/testing": "jsr:@std/testing@^0.225.3",
-    "@testing-library/preact": "npm:@testing-library/preact@^3.2.4",
-    "browser": "https://deno.land/x/bext@v1.0.2/mod.ts",
-    "browser/": "https://deno.land/x/bext@v1.0.2/",
-    "deno-dom": "jsr:@b-fuze/deno-dom@^0.1.47",
-    "esbuild": "npm:esbuild@^0.23.0",
-    "esbuild_deno_loader": "jsr:@luca/esbuild-deno-loader@^0.10.3",
-    "preact": "npm:preact@^10.22.1",
-    "preact/hooks": "npm:preact@^10.22.1/hooks"
   }
 }

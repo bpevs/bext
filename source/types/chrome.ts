@@ -11,4 +11,4 @@
  * Now uses https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/chrome
  */
 
-export { default } from 'npm:@types/chrome';
+export { type default } from 'npm:@types/chrome@0.0.268'
