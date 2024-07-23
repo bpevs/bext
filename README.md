@@ -13,7 +13,7 @@ Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs
 Bundler:
 
 ```sh
-> deno install --name=bext --allow-read --allow-write --allow-run --allow-env https://deno.land/x/bext/main.ts
+> deno install -g --name=bext --allow-read --allow-write --allow-run --allow-env jsr:@bpev/bext/bin
 
 > cd ./my_project
 
@@ -31,7 +31,7 @@ Types and Cross-Platform API Handling:
 ```ts
 // Import the direct npm:@types/chrome import used to define browserAPI in Bext
 // Alternatively, `import { Tab, TabChangeInfo } from npm:@types/chrome`
-import type Chrome from 'https://deno.land/x/bext/types/chrome.ts'
+import type Chrome from 'jsr:@bpev/bext/types/chrome'
 
 /**
  * browserAPI resolves to:
@@ -39,7 +39,7 @@ import type Chrome from 'https://deno.land/x/bext/types/chrome.ts'
  *   - globalThis.browser in Firefox browsers
  *   - Bext's mock_browser in Deno context (for unit testing)
  */
-import browserAPI from 'https://deno.land/x/bext/mod.ts'
+import browserAPI from 'jsr:@bpev/bext'
 
 browserAPI.tabs.onUpdated.addListener(
   (tabId: number, _: Chrome.TabChangeInfo, tab: Chrome.Tab) => {

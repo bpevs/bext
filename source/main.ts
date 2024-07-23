@@ -1,5 +1,7 @@
 /**
  * Compile and bundle all the distributables into dist.
+ *
+ * Keeping imports for this file local, to ensure it can be run independently
  */
 import * as esbuild from 'npm:esbuild@^0.23.0'
 import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
@@ -87,18 +89,16 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   }
 
   // Build Deno Plugin Options
-  let importMapURL = new URL('file://' + resolve('./import_map.json'))
-  if (!existsSync(importMapURL)) {
-    const denoJSONFileURL = new URL('file://' + resolve('./deno.json'))
-    const denoJSON = await (await fetch(denoJSONFileURL)).json()
-    if (denoJSON.source || denoJSON.imports) {
-      importMapURL = denoJSONFileURL
-    }
-  }
+  let importMapURL: string | undefined = resolve('./import_map.json')
+  if (!existsSync(importMapURL)) importMapURL = undefined
 
-  esBuildOptions.plugins = denoPlugins(
-    importMapURL ? { importMapURL: importMapURL.toString() } : {},
-  )
+  // const configPath = resolve('./deno.json');
+
+  esBuildOptions.plugins = [
+    ...denoPlugins(
+      importMapURL ? { importMapURL: 'file://' + importMapURL } : {},
+    ),
+  ]
 
   // Add watch esbuild options
   if (isWatching) {

@@ -1,11 +1,11 @@
 {
   "name": "@bpev/bext",
-  "version": "1.2.0-rc.1",
+  "version": "1.2.0-beta.1",
   "exports": {
-    "./bin": "./source/main.ts",
     ".": "./source/mod.ts",
-    "./types": "./source/types/chrome.ts",
-    "./mock_browser": "./source/mock_browser/main.ts"
+    "./bin": "./source/main.ts",
+    "./mock": "./source/mock_browser/main.ts",
+    "./types/chrome": "./source/types/chrome.ts"
   },
   "fmt": {
     "semiColons": false,
