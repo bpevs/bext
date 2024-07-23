@@ -64,6 +64,7 @@
   "redirects": {
     "https://esm.sh/@testing-library/preact/pure?dev": "https://esm.sh/@testing-library/preact@3.2.4/pure?dev",
     "https://esm.sh/preact/hooks?dev": "https://esm.sh/preact@10.22.1/hooks?dev",
+    "https://esm.sh/preact/jsx-runtime": "https://esm.sh/preact@10.22.1/jsx-runtime",
     "https://esm.sh/preact?dev": "https://esm.sh/preact@10.22.1?dev"
   },
   "remote": {
@@ -91,9 +92,12 @@
     "https://deno.land/x/deno_dom@v0.1.32-alpha/src/parser.ts": "b65eb7e673fa7ca611de871de109655f0aa9fa35ddc1de73df1a5fc2baafc332",
     "https://esm.sh/@testing-library/preact@3.2.4/pure?dev": "fa2c49cea74dcb38cfb011e62884f521e8a0db8baf6a20af52504ebf57d2d3eb",
     "https://esm.sh/preact@10.22.1/hooks?dev": "00687bf4de7e8b95a973f870d31e4ed240b5efcf9f36c3273a01d7d361879f2d",
+    "https://esm.sh/preact@10.22.1/jsx-runtime": "b7ee853194f04aac3df266341e89a4c95bd5308ad40f1c8b0f43221bc355dcbe",
     "https://esm.sh/preact@10.22.1?dev": "5f9395364ec92790c744a71460ecdf2ac7ddec7fe3c21f5403f679796773d610",
     "https://esm.sh/stable/preact@10.22.1/denonext/hooks.development.js": "7f69b3b8b7816dcc968e52a89484915f0545f3e47f3ee785b34df755c1d21539",
+    "https://esm.sh/stable/preact@10.22.1/denonext/jsx-runtime.js": "65096db62a455dcd5a5994d00db17adac32294a7aaf029ad1483f28cc5710803",
     "https://esm.sh/stable/preact@10.22.1/denonext/preact.development.mjs": "5234ceb0a895765fc05d030ba3a75153a34d35b95b51a9c9d85933ff72813075",
+    "https://esm.sh/stable/preact@10.22.1/denonext/preact.mjs": "516caa8df1109e0b82becdb053e7d956802ee2f3e3fa7f6925291e4d4a527706",
     "https://esm.sh/stable/preact@10.22.1/denonext/test-utils.development.js": "b8dd9c3ef9d2b87943449054f66f1b5e3ec11bbab145f6bc2bc59eeaf498befe",
     "https://esm.sh/v135/@testing-library/dom@8.20.1/denonext/dom.development.mjs": "4b56ee3859b31fe07628818eeb18a7fd5a9aadddd70ad624f5693756a6e14192",
     "https://esm.sh/v135/@testing-library/preact@3.2.4/denonext/pure.development.js": "028eda2bcba8e1e6bb2f8de32c77d1fa36979c2a93300c87ff84e00dc5defa59",
