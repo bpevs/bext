@@ -1,3 +1,6 @@
+/* @jsx h */
+import { h } from "preact";
+
 export interface OptionsProps {
   default?: boolean;
   path?: string;

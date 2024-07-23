@@ -7,30 +7,18 @@
       "dom.asynciterable",
       "esnext"
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment"
   },
-
-  "imports": {
-    "browser": "../../source/mod.ts",
-    "browser/": "../../source/",
-    "preact": "https://esm.sh/preact",
-    "preact/hooks": "https://esm.sh/preact/hooks",
-    "preact/jsx-runtime": "https://esm.sh/preact/jsx-runtime?dts",
-    "preact/jsx-dev-runtime": "https://esm.sh/preact/jsx-dev-runtime?dts",
-
-    "deno-dom": "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts",
-    "@std/assert": "https://deno.land/std@0.208.0/testing/asserts.ts",
-    "@std/testing/mock": "https://deno.land/std@0.208.0/testing/mock.ts",
-    "@testing-library/preact": "https://esm.sh/@testing-library/preact@3.2.2/pure?dev"
-  },
+  "importMap": "./import_map.json",
 
   "lint": {
     "exclude": ["dist"]
   },
 
   "tasks": {
-    "install": "deno install ../../source/main.ts -gfA --name bext-internal",
+    "install": "deno install --name=bext-internal -Agf ../../source/main.ts",
     "dev": "bext-internal --watch",
     "build": "bext-internal",
     "build:chrome": "bext-internal chrome",

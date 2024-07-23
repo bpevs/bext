@@ -1,6 +1,6 @@
 {
   "name": "@bpev/bext",
-  "version": "1.2.0",
+  "version": "1.2.0-rc.1",
   "exports": {
     "./bin": "./source/main.ts",
     ".": "./source/mod.ts",
@@ -11,9 +11,11 @@
     "semiColons": false,
     "singleQuote": true,
     "proseWrap": "preserve",
+    "include": ["source", "examples"],
     "exclude": ["dist"]
   },
   "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.0",
     "@std/testing": "jsr:@std/testing@^0.225.3"
   },
   "lint": {

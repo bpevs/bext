@@ -1,3 +1,5 @@
+/* @jsx h */
+import { h } from "preact";
 import { useCallback, useEffect, useState } from "preact/hooks";
 
 import {

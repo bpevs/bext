@@ -1,6 +1,8 @@
-// Compile and bundle all the distributables into dist.
-import * as esbuild from 'npm:esbuild@^0.19.11'
-import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@0.10.3'
+/**
+ * Compile and bundle all the distributables into dist.
+ */
+import * as esbuild from 'npm:esbuild@^0.23.0'
+import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
 import { parseArgs } from 'jsr:@std/cli@^1.0.0'
 import { copySync, ensureDir } from 'jsr:@std/fs@^0.229.3'
 import { resolve } from 'jsr:@std/path@^1.0.1'
@@ -81,12 +83,22 @@ const builds = Object.keys(browsers).map(async (browserId) => {
     bundle: true,
     format: 'esm',
     logLevel: 'verbose',
-    plugins: []
+    plugins: [],
   }
 
-  esBuildOptions.plugins = [
-    ...denoPlugins({ configPath: resolve('./deno.json') }),
-  ]
+  // Build Deno Plugin Options
+  let importMapURL = new URL('file://' + resolve('./import_map.json'))
+  if (!existsSync(importMapURL)) {
+    const denoJSONFileURL = new URL('file://' + resolve('./deno.json'))
+    const denoJSON = await (await fetch(denoJSONFileURL)).json()
+    if (denoJSON.source || denoJSON.imports) {
+      importMapURL = denoJSONFileURL
+    }
+  }
+
+  esBuildOptions.plugins = denoPlugins(
+    importMapURL ? { importMapURL: importMapURL.toString() } : {},
+  )
 
   // Add watch esbuild options
   if (isWatching) {

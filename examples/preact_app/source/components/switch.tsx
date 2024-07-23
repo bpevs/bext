@@ -1,4 +1,5 @@
-import { Fragment, type VNode } from "preact";
+/* @jsx h */
+import { Fragment, h, type VNode } from "preact";
 
 export interface SwitchProps {
   value?: string;
