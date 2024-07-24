@@ -2,15 +2,17 @@
 
 Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) with Deno. Supports Chromium and Firefox browsers.
 
-# Examples
-
-- [examples/preact_app](./examples/preact_app) is our canonical usage example
-- Bext powers [Favioli](https://github.com/bpevs/favioli)
-- [if you make an app, lmk and I can add it here!]
-
 # Usage
 
-Bundler:
+You can see [examples/preact](https://github.com/bpevs/bext/tree/main/examples/preact) as an example of basic usage and how to setup a working environment.
+
+You can also see a real-world example by looking at [Favioli](https://github.com/bpevs/favioli).
+
+## Bundle
+
+Once you have an app structured, bext can bundle your extension for Chrome and Firefox using esbuild. It will also take browser-specific properties from your
+`manifest.json` file, and format them into a compatible structure for each
+browser.
 
 ```sh
 > deno install -g --name=bext --allow-read --allow-write --allow-run --allow-env jsr:@bpev/bext/bin
@@ -26,7 +28,9 @@ Bundler:
 > bext firefox --watch
 ```
 
-Types and Cross-Platform API Handling:
+## Types and Utilities
+
+While building your app, bext re-exports the native extension apis, to smooth out a few of the cross-platform differences. We also add a couple utility functions to determine which browser we are using.
 
 ```ts
 // Import the direct npm:@types/chrome import used to define browserAPI in Bext
@@ -39,13 +43,42 @@ import type Chrome from 'jsr:@bpev/bext/types/chrome'
  *   - globalThis.browser in Firefox browsers
  *   - Bext's mock_browser in Deno context (for unit testing)
  */
-import browserAPI from 'jsr:@bpev/bext'
+import browserAPI, { isChrome, isFirefox } from 'jsr:@bpev/bext'
 
 browserAPI.tabs.onUpdated.addListener(
   (tabId: number, _: Chrome.TabChangeInfo, tab: Chrome.Tab) => {
-    // do stuff
+    console.log(isChrome(), isFirefox())
   },
 )
+```
+
+## Testing
+
+bext `browserAPI` will also return a mock browser when running in a Deno environment (where native extension apis don't exist). This makes writing unit tests a breeze!
+
+```ts
+import browserAPI, { isDeno } from 'jsr:@bpev/bext';
+import { assertStrictEquals } from 'jsr:@std/assert';
+import { assertSpyCall, assertSpyCalls, stub } from 'jsr:@std/testing/mock';
+
+import { getStorage } from './storage_helpers.ts';
+
+Deno.test('is running in test env', () => {
+  assert()
+})
+
+Deno.test('uses browser storage', async () => {
+  const getStorageStub = stub(browserAPI.storage.sync, 'get', () => {
+    return Promise.resolve({ storage_key: 'mock_storage_value' });
+  });
+
+  assertStrictEquals(await getStorage(), 'mock_storage_value');
+  assertSpyCalls(getStorageStub, 1);
+
+  // Expect `chrome.sync.storage.get` to be called with the storage_key
+  assertSpyCall(getStorageStub, 0, { args: ['storage_key'] });
+  getStorageStub.restore();
+});
 ```
 
 # Running this repo (for Bext development)

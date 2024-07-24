@@ -1,8 +1,22 @@
 /**
- * Compile and bundle all the distributables into dist.
+ * @module
+ * Compiles and bundles all the distributables into dist, using esbuild.
+ * In addition, using the `manifest.json`, format browser-specific compatible
+ * `manifest.json` files.
  *
- * Keeping imports for this file local, to ensure it can be run independently
+ * @example
+ *
+ * deno install -g --name=bext-internal -Ag jsr:@bpev/bext/bin
+ * cd ./my_project
+ * bext # both
+ * bext chrome # only chrome
+ * bext firefox # only ff
+ * bext --watch # build again on change
+ * bext chrome -w # variations can be used for single-platform
+ * bext firefox --watch
  */
+
+// Keep imports for this file local, to ensure it can be run independently
 import * as esbuild from 'npm:esbuild@^0.23.0'
 import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
 import { parseArgs } from 'jsr:@std/cli@^1.0.0'

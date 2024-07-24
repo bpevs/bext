@@ -1,13 +1,25 @@
-const DENO = 'DENO' // for test env
-const CHROME = 'CHROME'
-const FIREFOX = 'FIREFOX'
-type BrowserType = 'DENO' | 'CHROME' | 'FIREFOX'
+/**
+ * @module
+ * Simple predicate functions for determining current browser
+ */
+
+/*
+ * Enum for browser identity.
+ * "DENO" signals that we are in a test environment
+ */
+enum BrowserType {
+  DENO = 'DENO',
+  CHROME = 'CHROME',
+  FIREFOX = 'FIREFOX',
+}
+
+const { CHROME, DENO, FIREFOX } = BrowserType
 
 /**
- * What browser is this?
+ * Which browser is this?
  * @param {string} toCheck to check
  */
-export function isBrowser(toCheck: BrowserType): boolean {
+function isBrowser(toCheck: BrowserType): boolean {
   let currentBrowser = CHROME
   try {
     // Use try block, since userAgent not guaranteed to exist.
@@ -29,14 +41,26 @@ export function isBrowser(toCheck: BrowserType): boolean {
   return false
 }
 
+/**
+ * @return true if running as a Chrome extension
+ * @example assert(isChrome())
+ */
 export function isChrome(): boolean {
   return isBrowser(CHROME)
 }
 
+/**
+ * @return true if running in a Deno test environment
+ * @example assert(isDeno())
+ */
 export function isDeno(): boolean {
   return isBrowser(DENO)
 }
 
+/**
+ * @return true if running as a Firefox extension
+ * @example assert(isFirefox())
+ */
 export function isFirefox(): boolean {
   return isBrowser(FIREFOX)
 }
