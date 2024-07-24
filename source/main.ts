@@ -107,11 +107,13 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   let importMapURL: string | undefined = resolve('./import_map.json')
   if (!existsSync(importMapURL)) importMapURL = undefined
 
-  // const configPath = resolve('./deno.json');
+  const configPath = resolve('./deno.json')
 
   esBuildOptions.plugins = [
     ...denoPlugins(
-      importMapURL ? { importMapURL: 'file://' + importMapURL } : {},
+      importMapURL
+        ? { importMapURL: 'file://' + importMapURL, configPath }
+        : { configPath },
     ),
   ]
 
