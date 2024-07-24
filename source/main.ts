@@ -1,10 +1,11 @@
 /**
+ * @module
  * Compiles and bundles all the distributables into dist, using esbuild.
  * In addition, using the `manifest.json`, format browser-specific compatible
  * `manifest.json` files.
  *
  * @example
- *
+ * ```sh
  * deno install -g --name=bext-internal -Ag jsr:@bpev/bext/bin
  * cd ./my_project
  * bext # both
@@ -13,6 +14,7 @@
  * bext --watch # build again on change
  * bext chrome -w # variations can be used for single-platform
  * bext firefox --watch
+ * ```
  */
 
 // Keep imports for this file local, to ensure it can be run independently

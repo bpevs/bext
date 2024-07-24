@@ -43,7 +43,7 @@ function isBrowser(toCheck: BrowserType): boolean {
 /**
  * Function to determine if code is running in Chrome
  * @return true if running as a Chrome extension
- * @example assert(isChrome())
+ * @example `assert(isChrome())`
  */
 export function isChrome(): boolean {
   return isBrowser(CHROME)
@@ -52,7 +52,7 @@ export function isChrome(): boolean {
 /**
  * Function to determine if code is running in Deno (not a web extension)
  * @return true if running in a Deno test environment
- * @example assert(isDeno())
+ * @example `assert(isDeno())`
  */
 export function isDeno(): boolean {
   return isBrowser(DENO)
@@ -61,7 +61,7 @@ export function isDeno(): boolean {
 /**
  * Function to determine if code is running in Firefox
  * @return true if running as a Firefox extension
- * @example assert(isFirefox())
+ * @example `assert(isFirefox())`
  */
 export function isFirefox(): boolean {
   return isBrowser(FIREFOX)

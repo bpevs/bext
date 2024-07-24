@@ -1,4 +1,5 @@
 /**
+ * @module
  * API for more platform-agnostic access to browser extension apis.
  * Since browers ext API is kind of shifting sands, let's not do too much
  * work to try and make 100% stable. But we can use this for the more stable

@@ -19,6 +19,7 @@ const listeners = {
  * a Deno environment. Expected to be used for testing.
  *
  * @example
+ * ```ts
  * import browserAPI from "jsr:@bpev/bext";
  * import { assertStrictEquals } from 'jsr:@std/assert';
  * import { assertSpyCall, assertSpyCalls, stub } from 'jsr:@std/testing/mock';
@@ -36,8 +37,8 @@ const listeners = {
  *   // Expect `chrome.sync.storage.get` to be called with the storage_key
  *   assertSpyCall(getStorageStub, 0, { args: ["storage_key"] });
  *  getStorageStub.restore();
-});
-
+ * });
+ * ```
  */
 export default {
   permissions: {
