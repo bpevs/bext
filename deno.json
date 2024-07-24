@@ -1,6 +1,6 @@
 {
   "name": "@bpev/bext",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "exports": {
     ".": "./source/mod.ts",
     "./bin": "./source/main.ts",

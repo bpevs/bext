@@ -1,15 +1,15 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from 'preact/hooks'
 
 export default function useRoute() {
-  const [route, setRoute] = useState(location.hash);
+  const [route, setRoute] = useState(location.hash)
 
   useEffect(() => {
-    const updateRoute = () => setRoute(location.hash);
-    globalThis.addEventListener("hashchange", updateRoute, false);
+    const updateRoute = () => setRoute(location.hash)
+    globalThis.addEventListener('hashchange', updateRoute, false)
     return () => {
-      globalThis.removeEventListener("hashchange", updateRoute);
-    };
-  }, []);
+      globalThis.removeEventListener('hashchange', updateRoute)
+    }
+  }, [])
 
-  return route;
+  return route
 }

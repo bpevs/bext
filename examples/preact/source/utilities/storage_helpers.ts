@@ -1,17 +1,17 @@
-import browserAPI from "browser";
+import browserAPI from 'browser'
 
-const { storage } = browserAPI;
-const KEY = "storage_key";
+const { storage } = browserAPI
+const KEY = 'storage_key'
 
 interface Storage {
-  storage_key: string;
+  storage_key: string
 }
 
 interface Update {
   storage_key?: {
-    newValue?: string;
-    oldValue?: string;
-  };
+    newValue?: string
+    oldValue?: string
+  }
 }
 
 /**
@@ -22,16 +22,16 @@ interface Update {
 
 // Add listener to update on any changes to browser-sync storage
 export function addStorageListener(callback: (str: string) => void) {
-  const updateStorage = (data: Update) => callback(data[KEY]?.newValue || "");
-  storage.onChanged.addListener(updateStorage);
-  return () => storage.onChanged.removeListener(updateStorage);
+  const updateStorage = (data: Update) => callback(data[KEY]?.newValue || '')
+  storage.onChanged.addListener(updateStorage)
+  return () => storage.onChanged.removeListener(updateStorage)
 }
 
 export function getStorage() {
   return storage.sync.get(KEY)
-    .then((data: { [key: string]: string }) => data[KEY]);
+    .then((data: { [key: string]: string }) => data[KEY])
 }
 
 export function updateStorage(inputData: string) {
-  storage.sync.set({ [KEY]: inputData });
+  storage.sync.set({ [KEY]: inputData })
 }

@@ -1,17 +1,17 @@
 /* @jsx h */
-import { h } from "preact";
+import { h } from 'preact'
 
-import { useCallback } from "preact/hooks";
-import browserAPI from "browser";
+import { useCallback } from 'preact/hooks'
+import browserAPI from 'browser'
 
 export default function OptionsButton() {
   const onClick = useCallback(() => {
-    browserAPI.runtime.openOptionsPage();
-  }, []);
+    browserAPI.runtime.openOptionsPage()
+  }, [])
 
   return (
     <button onClick={onClick}>
       Options
     </button>
-  );
+  )
 }

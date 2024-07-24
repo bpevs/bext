@@ -1,3 +1,9 @@
+/**
+ * @module
+ * Cross platform `browser` / `chrome` globals access, as well as basic
+ * predicate functions for determining browser environment.
+ */
+
 import type BrowserAPI from './types/chrome.ts'
 import { isDeno, isFirefox } from './utilities/predicates.ts'
 import mockBrowser from './mock_browser/main.ts'
@@ -21,4 +27,18 @@ if (isDeno()) {
   browserAPI = mockBrowser as any
 }
 
+/**
+ * Cross-platform `browser` / `chrome` global. Re-exports `globalThis.browser`
+ * `globalThis.chrome`, or a mock browser, depending on the environment.
+ *
+ * @example
+ * import browserAPI from "jsr:@bpev/bext"
+ *
+ * export function getStorage() {
+ *   const data = await browserAPI.storage.sync.get("storage_key")
+ *   return data[KEY]
+ * }
+}
+
+ */
 export default browserAPI

@@ -1,5 +1,4 @@
 /**
- * @module
  * Compiles and bundles all the distributables into dist, using esbuild.
  * In addition, using the `manifest.json`, format browser-specific compatible
  * `manifest.json` files.

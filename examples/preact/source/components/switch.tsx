@@ -1,19 +1,19 @@
 /* @jsx h */
-import { Fragment, h, type VNode } from "preact";
+import { Fragment, h, type VNode } from 'preact'
 
 export interface SwitchProps {
-  value?: string;
-  defaultCase: VNode | string | null;
-  cases: { [name: string]: VNode | string | null };
+  value?: string
+  defaultCase: VNode | string | null
+  cases: { [name: string]: VNode | string | null }
 }
 
 export default function Switch(
   { value, defaultCase = null, cases }: SwitchProps,
 ) {
-  if (value == null) return null;
+  if (value == null) return null
   return (
     <Fragment>
       {cases[value] != null ? cases[value] : defaultCase}
     </Fragment>
-  );
+  )
 }

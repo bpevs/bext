@@ -15,7 +15,7 @@ Once you have an app structured, bext can bundle your extension for Chrome and F
 browser.
 
 ```sh
-> deno install -g --name=bext --allow-read --allow-write --allow-run --allow-env jsr:@bpev/bext/bin
+> deno install -gA --name=bext jsr:@bpev/bext/bin
 
 > cd ./my_project
 

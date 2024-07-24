@@ -1,5 +1,4 @@
 /**
- * @module
  * Simple predicate functions for determining current browser
  */
 
@@ -42,6 +41,7 @@ function isBrowser(toCheck: BrowserType): boolean {
 }
 
 /**
+ * Function to determine if code is running in Chrome
  * @return true if running as a Chrome extension
  * @example assert(isChrome())
  */
@@ -50,6 +50,7 @@ export function isChrome(): boolean {
 }
 
 /**
+ * Function to determine if code is running in Deno (not a web extension)
  * @return true if running in a Deno test environment
  * @example assert(isDeno())
  */
@@ -58,6 +59,7 @@ export function isDeno(): boolean {
 }
 
 /**
+ * Function to determine if code is running in Firefox
  * @return true if running as a Firefox extension
  * @example assert(isFirefox())
  */
