@@ -29,7 +29,7 @@
     "build": "(cd examples/preact && deno run -A ../../source/main.ts build)",
     "check": "deno check source/main.ts && deno check source/mod.ts",
     "dev": "(cd examples/preact && deno run -A ../../source/main.ts build -w)",
-    "test": "deno task test:source && deno task build && deno task test:examples && deno publish --dry-run",
+    "test": "deno task test:source && deno task build && deno task test:examples && deno publish --dry-run --allow-dirty",
     "test:examples": "(cd examples/preact && deno task test)",
     "test:source": "deno fmt && deno lint && deno task check && deno test source"
   },
