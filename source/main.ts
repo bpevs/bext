@@ -103,18 +103,8 @@ const builds = Object.keys(browsers).map(async (browserId) => {
     plugins: [],
   }
 
-  // Build Deno Plugin Options
-  let importMapURL: string | undefined = resolve('./import_map.json')
-  if (!existsSync(importMapURL)) importMapURL = undefined
-
-  const configPath = resolve('./deno.json')
-
   esBuildOptions.plugins = [
-    ...denoPlugins(
-      importMapURL
-        ? { importMapURL: 'file://' + importMapURL, configPath }
-        : { configPath },
-    ),
+    ...denoPlugins({ configPath: resolve('./deno.json') }),
   ]
 
   // Add watch esbuild options
@@ -144,13 +134,3 @@ const builds = Object.keys(browsers).map(async (browserId) => {
 
 await Promise.all(builds)
 if (!isWatching) Deno.exit(0)
-
-function existsSync(filePath: string | URL): boolean {
-  try {
-    Deno.lstatSync(filePath)
-    return true
-  } catch (error) {
-    if (error instanceof Deno.errors.NotFound) return false
-    throw error
-  }
-}
