@@ -4,7 +4,7 @@ Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs
 
 # Usage
 
-You can see [examples/preact](https://github.com/bpevs/bext/tree/main/examples/preact) as an example of basic usage and how to setup a working environment.
+You can see [bext_preact_template](https://github.com/bpevs/bext_preact_template) as an example of basic usage and how to setup a working environment.
 
 You can also see a real-world example by looking at [Favioli](https://github.com/bpevs/favioli).
 
