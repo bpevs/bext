@@ -14,7 +14,7 @@
  * bext --watch # build again on change
  * bext chrome -w # variations can be used for single-platform
  * bext firefox --watch
- * bext --source=src --static=public --builds=builds # custom paths
+ * bext --source=src --static=public --output=builds # custom paths
  * ```
  */
 
