@@ -74,12 +74,6 @@ const browsers: BrowserManifests = {
 if (args._[0] === 'chrome') delete browsers.firefox
 if (args._[0] === 'firefox') delete browsers.chrome
 
-const paths = {
-  source: 'source',
-  static: 'static',
-  output: 'dist',
-}
-
 const entryPoints = [
   'options.tsx',
   'content_script.ts',
