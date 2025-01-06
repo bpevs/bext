@@ -23,9 +23,15 @@ browser.
 > bext chrome # only chrome
 > bext firefox # only ff
 
-> bext --watch # build again on change
+# Watch mode
+> bext --watch # or -w: build again on change
 > bext chrome -w # variations can be used for single-platform
 > bext firefox --watch
+
+# Custom directories
+> bext --source=src # --source or -s: specify source directory (default: "source")
+> bext --source=src --static=assets # --static or -t: specify static assets directory (default: "static")
+> bext --source=src --static=assets --output=build # --output or -o: specify output directory (default: "dist")
 ```
 
 ## Types and Utilities
