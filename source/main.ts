@@ -43,7 +43,7 @@ const args = parseArgs(Deno.args, {
     w: 'watch',
     s: 'source',
     t: 'static',
-    o: 'output'
+    o: 'output',
   },
   default: {
     source: 'source',
