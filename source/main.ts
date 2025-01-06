@@ -14,6 +14,7 @@
  * bext --watch # build again on change
  * bext chrome -w # variations can be used for single-platform
  * bext firefox --watch
+ * bext --source=src --static=public --builds=builds # custom paths
  * ```
  */
 
@@ -35,8 +36,23 @@ interface BrowserManifests {
   [id: string]: BrowserManifestSettings
 }
 
-const args = parseArgs(Deno.args)
-const isWatching = args.watch || args.w
+const args = parseArgs(Deno.args, {
+  string: ['source', 'static', 'output'],
+  boolean: ['watch'],
+  alias: {
+    w: 'watch',
+    s: 'source',
+    t: 'static',
+    o: 'output'
+  },
+  default: {
+    source: 'source',
+    static: 'static',
+    output: 'dist',
+  },
+})
+
+const isWatching = args.watch
 
 const browsers: BrowserManifests = {
   chrome: {
@@ -72,6 +88,11 @@ const entryPoints = [
 ].map((file) => `${paths.source}/${file}`)
 
 console.log('\x1b[37mPackager\n========\x1b[0m')
+console.log(`Using paths:
+Source: "${resolve(paths.source)}"
+Static: "${resolve(paths.static)}"
+output: "${resolve(paths.output)}"
+`)
 
 const builds = Object.keys(browsers).map(async (browserId) => {
   /** Browser-Specific Build Path */
