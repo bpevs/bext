@@ -79,30 +79,30 @@ const entryPoints = [
   'content_script.ts',
   'background.ts',
   'popup.tsx',
-].map((file) => `${paths.source}/${file}`)
+].map((file) => `${args.source}/${file}`)
 
 console.log('\x1b[37mPackager\n========\x1b[0m')
 console.log(`Using paths:
-Source: "${resolve(paths.source)}"
-Static: "${resolve(paths.static)}"
-output: "${resolve(paths.output)}"
+Source: "${resolve(args.source)}"
+Static: "${resolve(args.static)}"
+output: "${resolve(args.output)}"
 `)
 
 const builds = Object.keys(browsers).map(async (browserId) => {
   /** Browser-Specific Build Path */
-  const outdir = `${paths.output}/${browserId}`
+  const outdir = `${args.output}/${browserId}`
 
   // Copy JS/HTML/CSS/ICONS
   ensureDir(`${outdir}/static`)
 
   const options = { overwrite: true }
-  copySync(paths.static, outdir, options)
+  copySync(args.static, outdir, options)
 
   const browserManifestSettings = browsers[browserId]
 
   // Transform Manifest
   const manifest = {
-    ...JSON.parse(Deno.readTextFileSync(`${paths.source}/manifest.json`)),
+    ...JSON.parse(Deno.readTextFileSync(`${args.source}/manifest.json`)),
     ...browserManifestSettings.overrides,
   }
   browserManifestSettings.omits.forEach((omit) => delete manifest[omit])
