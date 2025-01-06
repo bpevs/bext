@@ -58,44 +58,52 @@ const browsers: BrowserManifests = {
 if (args._[0] === 'chrome') delete browsers.firefox
 if (args._[0] === 'firefox') delete browsers.chrome
 
+const paths = {
+  source: 'source',
+  static: 'static',
+  builds: 'dist',
+}
+
+const entryPoints = [
+  'options.tsx',
+  'content_script.ts',
+  'background.ts',
+  'popup.tsx',
+].map((file) => `${paths.source}/${file}`)
+
 console.log('\x1b[37mPackager\n========\x1b[0m')
 
 const builds = Object.keys(browsers).map(async (browserId) => {
-  const distDir = `dist/${browserId}`
+  /** Browser-Specific Build Path */
+  const outdir = `${paths.builds}/${browserId}`
 
   // Copy JS/HTML/CSS/ICONS
-  ensureDir(`${distDir}/static`)
+  ensureDir(`${outdir}/static`)
 
   const options = { overwrite: true }
-  copySync('static', distDir, options)
+  copySync(paths.static, outdir, options)
 
   const browserManifestSettings = browsers[browserId]
 
   // Transform Manifest
   const manifest = {
-    ...JSON.parse(Deno.readTextFileSync('source/manifest.json')),
+    ...JSON.parse(Deno.readTextFileSync(`${paths.source}/manifest.json`)),
     ...browserManifestSettings.overrides,
   }
   browserManifestSettings.omits.forEach((omit) => delete manifest[omit])
 
   Deno.writeTextFileSync(
-    distDir + '/manifest.json',
+    outdir + '/manifest.json',
     JSON.stringify(manifest, null, 2),
   )
 
   const color = browserManifestSettings.color || ''
   const browserName = browserId.toUpperCase()
   const colorizedBrowserName = `\x1b[1m${color}${browserName}\x1b[0m`
-  const outdir = `dist/${browserId}/`
 
   console.log(`Initializing ${colorizedBrowserName} build...`)
   const esBuildOptions: esbuild.BuildOptions = {
-    entryPoints: [
-      'source/options.tsx',
-      'source/content_script.ts',
-      'source/background.ts',
-      'source/popup.tsx',
-    ],
+    entryPoints,
     outdir,
     bundle: true,
     format: 'esm',
