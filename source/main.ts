@@ -61,7 +61,7 @@ if (args._[0] === 'firefox') delete browsers.chrome
 const paths = {
   source: 'source',
   static: 'static',
-  builds: 'dist',
+  output: 'dist',
 }
 
 const entryPoints = [
@@ -75,7 +75,7 @@ console.log('\x1b[37mPackager\n========\x1b[0m')
 
 const builds = Object.keys(browsers).map(async (browserId) => {
   /** Browser-Specific Build Path */
-  const outdir = `${paths.builds}/${browserId}`
+  const outdir = `${paths.output}/${browserId}`
 
   // Copy JS/HTML/CSS/ICONS
   ensureDir(`${outdir}/static`)
