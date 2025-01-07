@@ -111,7 +111,6 @@ const builds = Object.keys(browsers).map(async (browserId) => {
 
   // Copy JS/HTML/CSS/ICONS
   if (await exists(args.static)) {
-    console.log('static exists')
     await ensureDir(join(outdir, 'static'))
 
     const options = { overwrite: true }
