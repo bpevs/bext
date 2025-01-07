@@ -84,13 +84,14 @@ const entryNames = [
 const entryPoints: string[] = []
 
 await Promise.all(entryNames.map(async (name) => {
+  const jsPath = `${args.source}/${name}.js`
+  const jsxPath = `${args.source}/${name}.jsx`
   const tsPath = `${args.source}/${name}.ts`
   const tsxPath = `${args.source}/${name}.tsx`
-  if (await exists(tsPath)) {
-    entryPoints.push(tsPath)
-  } else if (await exists(tsxPath)) {
-    entryPoints.push(tsxPath)
-  }
+  if (await exists(jsPath)) entryPoints.push(jsPath)
+  else if (await exists(jsxPath)) entryPoints.push(jsxPath)
+  else if (await exists(tsPath)) entryPoints.push(tsPath)
+  else if (await exists(tsxPath)) entryPoints.push(tsxPath)
 }))
 
 console.log('\x1b[37mPackager\n========\x1b[0m')
