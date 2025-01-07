@@ -22,8 +22,8 @@
 import * as esbuild from 'npm:esbuild@^0.23.0'
 import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
 import { parseArgs } from 'jsr:@std/cli@^1.0.0'
-import { copySync, ensureDir } from 'jsr:@std/fs@^0.229.3'
-import { resolve } from 'jsr:@std/path@^1.0.1'
+import { copy, ensureDir, exists } from 'jsr:@std/fs@^0.229.3'
+import { join, resolve } from 'jsr:@std/path@^1.0.1'
 
 interface BrowserManifestSettings {
   color: string
@@ -74,29 +74,48 @@ const browsers: BrowserManifests = {
 if (args._[0] === 'chrome') delete browsers.firefox
 if (args._[0] === 'firefox') delete browsers.chrome
 
-const entryPoints = [
-  'options.tsx',
-  'content_script.ts',
-  'background.ts',
-  'popup.tsx',
-].map((file) => `${args.source}/${file}`)
+const entryNames = [
+  'options',
+  'content_script',
+  'contentScript',
+  'background',
+  'popup',
+]
+const entryPoints: string[] = []
+
+await Promise.all(entryNames.map(async (name) => {
+  const tsPath = `${args.source}/${name}.ts`
+  const tsxPath = `${args.source}/${name}.tsx`
+  if (await exists(tsPath)) {
+    entryPoints.push(tsPath)
+  } else if (await exists(tsxPath)) {
+    entryPoints.push(tsxPath)
+  }
+}))
 
 console.log('\x1b[37mPackager\n========\x1b[0m')
 console.log(`Using paths:
-Source: "${resolve(args.source)}"
-Static: "${resolve(args.static)}"
+source: "${resolve(args.source)}"
+static: "${resolve(args.static)}"
 output: "${resolve(args.output)}"
 `)
 
+await ensureDir(resolve(args.output))
+
 const builds = Object.keys(browsers).map(async (browserId) => {
   /** Browser-Specific Build Path */
-  const outdir = `${args.output}/${browserId}`
+  const outdir = join(args.output, browserId)
+  await ensureDir(resolve(outdir))
+  console.log(resolve(outdir))
 
   // Copy JS/HTML/CSS/ICONS
-  ensureDir(`${outdir}/static`)
+  if (await exists(args.static)) {
+    console.log('static exists')
+    await ensureDir(join(outdir, 'static'))
 
-  const options = { overwrite: true }
-  copySync(args.static, outdir, options)
+    const options = { overwrite: true }
+    await copy(args.static, outdir, options)
+  }
 
   const browserManifestSettings = browsers[browserId]
 

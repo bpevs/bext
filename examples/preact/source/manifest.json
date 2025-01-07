@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Browser Extension",
+  "name": "Preact Browser Extension",
   "description": "A browser Extension",
   "version": "0.0.1",
   "background": {

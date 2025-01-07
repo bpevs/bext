@@ -5,7 +5,7 @@
 
 /// <reference lib="dom" />
 
-globalThis.alert('Running Sample Browser Extension')
+globalThis.alert('Running Preact Browser Extension')
 
 Array.prototype.forEach.call(
   document.getElementsByTagName('*'),

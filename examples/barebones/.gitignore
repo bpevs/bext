@@ -1,0 +1,8 @@
+# build files
+dist
+
+# misc
+._*
+.DS_Store
+.env
+.Trashes

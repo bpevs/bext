@@ -29,11 +29,10 @@
   },
 
   "tasks": {
-    "install": "deno install --name=bext-internal -Agf ../../source/main.ts",
-    "dev": "bext-internal --watch",
-    "build": "bext-internal",
-    "build:chrome": "bext-internal chrome",
-    "build:firefox": "bext-internal firefox",
+    "dev": "bext --watch",
+    "build": "bext",
+    "build:chrome": "bext chrome",
+    "build:firefox": "bext firefox",
     "test": "deno task check && deno task test:unit && deno lint",
     "test:unit": "deno test -A source",
     "test:unit:update": "deno test -A -- --update source",
@@ -41,6 +40,9 @@
     "check:background": "deno check source/background.ts",
     "check:content_script": "deno check source/content_script.ts",
     "check:options": "deno check source/options.tsx",
-    "check:popup": "deno check source/popup.tsx"
+    "check:popup": "deno check source/popup.tsx",
+    "bext-internal-dev-only-install": "deno install --name=bext-internal -Agf ../../source/main.ts",
+    "bext-internal-dev-only-dev": "bext-internal --watch",
+    "bext-internal-dev-only-build": "bext-internal"
   }
 }
