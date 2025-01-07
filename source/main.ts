@@ -107,7 +107,6 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   /** Browser-Specific Build Path */
   const outdir = join(args.output, browserId)
   await ensureDir(resolve(outdir))
-  console.log(resolve(outdir))
 
   // Copy JS/HTML/CSS/ICONS
   if (await exists(args.static)) {
