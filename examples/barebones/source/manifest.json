@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Barebones Browser Extension",
+  "description": "A browser Extension",
+  "version": "0.0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content_script.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [],
+  "applications": {
+    "gecko": {
+      "id": "browser-extension@my-extension-id-email.com"
+    }
+  }
+}

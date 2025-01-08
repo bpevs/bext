@@ -26,11 +26,14 @@
     "exclude": ["dist", "examples"]
   },
   "tasks": {
-    "build": "(cd examples/preact && deno run -A ../../source/main.ts build)",
+    "build": "deno task build:preact && deno task build:barebones",
+    "build:barebones": "(cd examples/barebones && deno run -A ../../source/main.ts internal-dev-only-build)",
+    "build:preact": "(cd examples/preact && deno run -A ../../source/main.ts internal-dev-only-build)",
     "check": "deno check source/main.ts && deno check source/mod.ts",
-    "dev": "(cd examples/preact && deno run -A ../../source/main.ts build -w)",
-    "test": "deno task test:source && deno task build && deno task test:examples && deno publish --dry-run --allow-dirty",
-    "test:examples": "(cd examples/preact && deno task test)",
+    "dev:barebones": "(cd examples/barebones && deno run -A ../../source/main.ts internal-dev-only-build -w)",
+    "dev:preact": "(cd examples/preact && deno run -A ../../source/main.ts internal-dev-only-build -w)",
+    "test": "deno task test:source && deno task build && deno task test:preact && deno publish --dry-run --allow-dirty",
+    "test:preact": "(cd examples/preact && deno task test)",
     "test:source": "deno fmt && deno lint && deno task check && deno test source"
   },
   "test": {
