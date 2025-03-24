@@ -20,7 +20,7 @@
 
 // Keep imports for this file local, to ensure it can be run independently
 import * as esbuild from 'npm:esbuild@^0.23.0'
-import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
+import { denoPlugins } from 'jsr:@duesabati/esbuild-deno-plugin@^0.2.6'
 import { parseArgs } from 'jsr:@std/cli@^1.0.0'
 import { copy, ensureDir, exists } from 'jsr:@std/fs@^0.229.3'
 import { join, resolve } from 'jsr:@std/path@^1.0.1'
@@ -37,18 +37,20 @@ interface BrowserManifests {
 }
 
 const args = parseArgs(Deno.args, {
-  string: ['source', 'static', 'output'],
+  string: ['source', 'static', 'output', 'config'],
   boolean: ['watch'],
   alias: {
     w: 'watch',
     s: 'source',
     t: 'static',
     o: 'output',
+    c: 'config',
   },
   default: {
     source: 'source',
     static: 'static',
     output: 'dist',
+    config: 'deno.json',
   },
 })
 
@@ -145,7 +147,7 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   }
 
   esBuildOptions.plugins = [
-    ...denoPlugins({ configPath: resolve('./deno.json') }),
+    ...denoPlugins({ configPath: resolve(args.config) }),
   ]
 
   // Add watch esbuild options

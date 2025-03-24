@@ -46,7 +46,7 @@
     // NOTE: seems we do not support the workspace now
     //"build": "deno task build:preact && deno task build:barebones",
     //"build:barebones": "(cd examples/barebones && deno run -A ../../source/main.ts internal-dev-only-build)",
-    //"build:preact": "(cd examples/preact && deno run -A ../../source/main.ts internal-dev-only-build)",
+    "build:preact": "(cd examples/preact && deno run -A ../../source/main.ts --config ../../deno.jsonc internal-dev-only-build)",
     "check": "deno check source/main.ts && deno check source/mod.ts",
     "dev:barebones": "(cd examples/barebones && deno run -A ../../source/main.ts internal-dev-only-build -w)",
     "dev:preact": "(cd examples/preact && deno run -A ../../source/main.ts internal-dev-only-build -w)",
@@ -74,5 +74,5 @@
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment"
-  },
+  }
 }
