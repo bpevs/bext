@@ -1,4 +1,4 @@
-import browserAPI from 'browser'
+import browserAPI from '@bpev/bext'
 import { assertStrictEquals } from '@std/assert'
 import { assertSpyCall, assertSpyCalls, stub } from '@std/testing/mock'
 

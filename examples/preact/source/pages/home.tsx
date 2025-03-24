@@ -36,6 +36,7 @@ export default function Home(_props: HomeProps) {
         }, [setInputData])}
       />
       <button
+        type='button'
         onClick={useCallback(() => updateStorage(inputData), [inputData])}
       >
         Update Storage
