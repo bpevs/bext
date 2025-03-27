@@ -4,7 +4,7 @@ Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs
 
 # Usage
 
-You can see basic examples here: https://github.com/bpevs/bext/examples
+You can see basic examples here: https://github.com/bpevs/bext/tree/main/examples
 
 You can also see a real-world example by looking at [Favioli](https://github.com/bpevs/favioli).
 

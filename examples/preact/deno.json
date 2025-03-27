@@ -16,7 +16,7 @@
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.47",
     "@bpev/bext": "jsr:@bpev/bext",
     "@std/assert": "jsr:@std/assert@^1.0.11",
-    "@std/testing": "jsr:@std/testing@^0.225.3",
+    "@std/testing": "jsr:@std/testing@^1.0.10",
     "@testing-library/preact": "npm:@testing-library/preact@^3.2.4",
     "deno-dom": "https://deno.land/x/deno_dom@v0.1.32-alpha/deno-dom-wasm.ts",
     "preact": "npm:preact@^10.23.0",
