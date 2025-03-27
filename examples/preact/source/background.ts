@@ -1,5 +1,5 @@
-import type Chrome from 'browser/types/chrome.ts'
-import browserAPI from 'browser'
+import type Chrome from '@bpev/bext/types/chrome'
+import browserAPI from '@bpev/bext'
 
 browserAPI.tabs.onUpdated.addListener(
   (

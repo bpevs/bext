@@ -1,9 +1,6 @@
 {
   "tasks": {
     "dev": "bext --watch",
-    "build": "bext",
-    "internal-dev-only-install": "deno install --name=bext-internal -Agf ../../source/main.ts",
-    "internal-dev-only-dev": "bext-internal --watch",
-    "internal-dev-only-build": "bext-internal"
+    "build": "bext"
   }
 }

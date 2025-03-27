@@ -1,4 +1,4 @@
-import browserAPI from 'browser'
+import browserAPI from '@bpev/bext'
 
 const { storage } = browserAPI
 const KEY = 'storage_key'
