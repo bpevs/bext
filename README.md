@@ -32,6 +32,8 @@ browser.
 > bext --source=src # --source or -s: specify source directory (default: "source")
 > bext --source=src --static=assets # --static or -t: specify static assets directory (default: "static")
 > bext --source=src --static=assets --output=build # --output or -o: specify output directory (default: "dist")
+
+> bext --config=../deno.json # --config or -c: specify deno.json config file. If using a workspace, point at the root workspace deno.json
 ```
 
 ## Types and Utilities
@@ -63,11 +65,11 @@ browserAPI.tabs.onUpdated.addListener(
 bext `browserAPI` will also return a mock browser when running in a Deno environment (where native extension apis don't exist). This makes writing unit tests a breeze!
 
 ```ts
-import browserAPI, { isDeno } from 'jsr:@bpev/bext';
-import { assertStrictEquals } from 'jsr:@std/assert';
-import { assertSpyCall, assertSpyCalls, stub } from 'jsr:@std/testing/mock';
+import browserAPI, { isDeno } from 'jsr:@bpev/bext'
+import { assertStrictEquals } from 'jsr:@std/assert'
+import { assertSpyCall, assertSpyCalls, stub } from 'jsr:@std/testing/mock'
 
-import { getStorage } from './storage_helpers.ts';
+import { getStorage } from './storage_helpers.ts'
 
 Deno.test('is running in test env', () => {
   assert()
@@ -75,23 +77,31 @@ Deno.test('is running in test env', () => {
 
 Deno.test('uses browser storage', async () => {
   const getStorageStub = stub(browserAPI.storage.sync, 'get', () => {
-    return Promise.resolve({ storage_key: 'mock_storage_value' });
-  });
+    return Promise.resolve({ storage_key: 'mock_storage_value' })
+  })
 
-  assertStrictEquals(await getStorage(), 'mock_storage_value');
-  assertSpyCalls(getStorageStub, 1);
+  assertStrictEquals(await getStorage(), 'mock_storage_value')
+  assertSpyCalls(getStorageStub, 1)
 
   // Expect `chrome.sync.storage.get` to be called with the storage_key
-  assertSpyCall(getStorageStub, 0, { args: ['storage_key'] });
-  getStorageStub.restore();
-});
+  assertSpyCall(getStorageStub, 0, { args: ['storage_key'] })
+  getStorageStub.restore()
+})
 ```
 
 # Running this repo (for Bext development)
 
 Tasks are defined in [deno.json](./deno.json), but basically:
 
-- `deno task dev`: Run the example app in watch-mode
+- `deno task dev:{project}`: Run the example app in watch-mode
 - `deno task test`: Makes sure it all works. Use this before committing!
   - runs fmt, lint, type-checks, unit tests for source and example apps
   - builds example apps using local bext copy
+
+## `/examples`
+
+Note that the `deno tasks` in the example projects are meant to show the client usage, and therefore have tasks that don't work within the context of this repo's workspace.
+
+If you want to run these projects from the Bext repo, please use the tasks in the root `deno.json` (instead of the `deno.json` in the `/examples/{project}`)
+
+Also, for this same reason, do not put any imports in the root `deno.json`.

@@ -6,7 +6,7 @@
  *
  * @example
  * ```sh
- * deno install -g --name=bext-internal -Ag jsr:@bpev/bext/bin
+ * deno install -g --name=bext -Ag jsr:@bpev/bext/bin
  * cd ./my_project
  * bext # both
  * bext chrome # only chrome
@@ -19,11 +19,11 @@
  */
 
 // Keep imports for this file local, to ensure it can be run independently
-import * as esbuild from 'esbuild'
-import { denoPlugins } from '@luca/esbuild-deno-loader'
-import { parseArgs } from '@std/cli'
-import { copy, ensureDir, exists } from '@std/fs'
-import { join, resolve } from '@std/path'
+import * as esbuild from 'npm:esbuild@0.24.2'
+import { denoPlugins } from 'jsr:@duesabati/esbuild-deno-plugin@0.2.6'
+import { parseArgs } from 'jsr:@std/cli@^1.0.15'
+import { copy, ensureDir, exists } from 'jsr:@std/fs@^1.0.15'
+import { join, resolve } from 'jsr:@std/path@^1.0.8'
 
 interface BrowserManifestSettings {
   color: string
@@ -37,15 +37,17 @@ interface BrowserManifests {
 }
 
 const args = parseArgs(Deno.args, {
-  string: ['source', 'static', 'output'],
+  string: ['config', 'output', 'source', 'static'],
   boolean: ['watch'],
   alias: {
-    w: 'watch',
+    c: 'config',
+    o: 'output',
     s: 'source',
     t: 'static',
-    o: 'output',
+    w: 'watch',
   },
   default: {
+    config: './deno.json',
     source: 'source',
     static: 'static',
     output: 'dist',
@@ -145,7 +147,7 @@ const builds = Object.keys(browsers).map(async (browserId) => {
   }
 
   esBuildOptions.plugins = [
-    ...denoPlugins({ configPath: resolve('./deno.json') }),
+    ...denoPlugins({ configPath: resolve(args.config) }),
   ]
 
   // Add watch esbuild options

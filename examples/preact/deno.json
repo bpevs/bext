@@ -14,11 +14,10 @@
 
   "imports": {
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.47",
-    "@std/assert": "jsr:@std/assert@^1.0.0",
+    "@bpev/bext": "jsr:@bpev/bext",
+    "@std/assert": "jsr:@std/assert@^1.0.11",
     "@std/testing": "jsr:@std/testing@^0.225.3",
     "@testing-library/preact": "npm:@testing-library/preact@^3.2.4",
-    "browser": "../../source/mod.ts",
-    "browser/": "../../source/",
     "deno-dom": "https://deno.land/x/deno_dom@v0.1.32-alpha/deno-dom-wasm.ts",
     "preact": "npm:preact@^10.23.0",
     "preact/hooks": "npm:preact@^10.23.0/hooks"
@@ -40,9 +39,6 @@
     "check:background": "deno check source/background.ts",
     "check:content_script": "deno check source/content_script.ts",
     "check:options": "deno check source/options.tsx",
-    "check:popup": "deno check source/popup.tsx",
-    "bext-internal-dev-only-install": "deno install --name=bext-internal -Agf ../../source/main.ts",
-    "bext-internal-dev-only-dev": "bext-internal --watch",
-    "bext-internal-dev-only-build": "bext-internal"
+    "check:popup": "deno check source/popup.tsx"
   }
 }

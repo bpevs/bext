@@ -2,8 +2,6 @@
 
 A Preact-Rendered Chrome/Firefox extension built with Bext.
 
-Note: Since is also used for internal dev. In your own app, the `browser` dependency should point to `jsr:@bpev/bext`. Also, the `internal-dev-only` tasks can be removed.
-
 Uses:
 
 - `background.ts` logs url to extension console for each new tab update
