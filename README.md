@@ -4,7 +4,7 @@ Tools for Building [Browser Extensions](https://developer.mozilla.org/en-US/docs
 
 # Usage
 
-You can see [bext_preact_template](https://github.com/bpevs/bext_preact_template) as an example of basic usage and how to setup a working environment.
+You can see basic examples here: https://github.com/bpevs/bext/examples
 
 You can also see a real-world example by looking at [Favioli](https://github.com/bpevs/favioli).
 
@@ -88,20 +88,3 @@ Deno.test('uses browser storage', async () => {
   getStorageStub.restore()
 })
 ```
-
-# Running this repo (for Bext development)
-
-Tasks are defined in [deno.json](./deno.json), but basically:
-
-- `deno task dev:{project}`: Run the example app in watch-mode
-- `deno task test`: Makes sure it all works. Use this before committing!
-  - runs fmt, lint, type-checks, unit tests for source and example apps
-  - builds example apps using local bext copy
-
-## `/examples`
-
-Note that the `deno tasks` in the example projects are meant to show the client usage, and therefore have tasks that don't work within the context of this repo's workspace.
-
-If you want to run these projects from the Bext repo, please use the tasks in the root `deno.json` (instead of the `deno.json` in the `/examples/{project}`)
-
-Also, for this same reason, do not put any imports in the root `deno.json`.

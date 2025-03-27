@@ -59,5 +59,8 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Publish
-        run: deno publish
+      - name: Copy Readme
+        run: cp README.md ./source/README.md
+
+      - name: Publish with Readme
+        run: deno publish --allow-dirty
