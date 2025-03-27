@@ -10,7 +10,7 @@ export default function OptionsButton() {
   }, [])
 
   return (
-    <button onClick={onClick}>
+    <button type='button' onClick={onClick}>
       Options
     </button>
   )

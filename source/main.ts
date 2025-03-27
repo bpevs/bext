@@ -19,11 +19,11 @@
  */
 
 // Keep imports for this file local, to ensure it can be run independently
-import * as esbuild from 'npm:esbuild@^0.23.0'
-import { denoPlugins } from 'jsr:@luca/esbuild-deno-loader@^0.10.3'
-import { parseArgs } from 'jsr:@std/cli@^1.0.0'
-import { copy, ensureDir, exists } from 'jsr:@std/fs@^0.229.3'
-import { join, resolve } from 'jsr:@std/path@^1.0.1'
+import * as esbuild from 'esbuild'
+import { denoPlugins } from '@luca/esbuild-deno-loader'
+import { parseArgs } from '@std/cli'
+import { copy, ensureDir, exists } from '@std/fs'
+import { join, resolve } from '@std/path'
 
 interface BrowserManifestSettings {
   color: string
